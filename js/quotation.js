@@ -278,6 +278,17 @@ const QuotationEngine = {
     return this.selectedItems;
   },
 
+  loadCustomKit(itemList = []) {
+    this.selectedItems = [];
+    itemList.forEach(item => {
+      if (item && item.productId) {
+        this.addItem(item.productId, item.qty || 1);
+      }
+    });
+    this.renderItemsTable();
+    this.calculateTotals();
+  },
+
   addItem(productId, qty = 1) {
     const products = DB.getInventory();
     const prod = products.find(p => p.id === productId);

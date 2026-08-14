@@ -748,15 +748,35 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CCTV REQUIREMENT WIZARD */
 .wizard-card {
-  max-width: 800px;
+  max-width: 860px;
   margin: 0 auto;
+  padding: 2rem;
+}
+
+@media (max-width: 576px) {
+  .wizard-card {
+    padding: 1.25rem 1rem;
+  }
 }
 
 .wizard-steps {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 2rem;
   position: relative;
+  gap: 0.5rem;
+}
+
+.wizard-steps::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 30px;
+  right: 30px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  z-index: 1;
 }
 
 .wizard-step-item {
@@ -765,11 +785,14 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.4rem;
   z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.25 ease;
 }
 
 .step-num {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: var(--bg-main);
   border: 2px solid var(--border-light);
@@ -779,13 +802,32 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   font-size: 0.9rem;
   color: var(--text-muted);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.wizard-step-item:hover .step-num {
+  border-color: var(--primary);
 }
 
 .wizard-step-item.active .step-num {
   background: var(--primary);
   border-color: var(--primary);
   color: #050b14;
-  box-shadow: 0 0 15px var(--primary-glow);
+  box-shadow: 0 0 18px var(--primary-glow);
+  transform: scale(1.08);
+}
+
+.wizard-step-item.active .step-label {
+  color: #fff;
+  font-weight: 700;
 }
 
 .wizard-step-item.completed .step-num {
@@ -794,30 +836,76 @@ h1, h2, h3, h4, h5, h6 {
   color: #050b14;
 }
 
+.wizard-step-item.completed .step-label {
+  color: var(--accent);
+}
+
+/* Wizard Panels Animation */
+.wizard-panel {
+  display: none;
+}
+
+.wizard-panel.active {
+  display: block;
+  animation: fadeInStep 0.35s ease-out forwards;
+}
+
+@keyframes fadeInStep {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .wizard-option-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .wizard-option-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .wizard-option {
-  background: rgba(255, 255, 255, 0.03);
+  position: relative;
+  background: rgba(255, 255, 255, 0.025);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 1.25rem;
+  padding: 1.25rem 1rem;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.wizard-option:hover, .wizard-option.selected {
-  border-color: var(--primary);
-  background: rgba(0, 210, 255, 0.08);
+.wizard-option-badge {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: rgba(0, 210, 255, 0.15);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
 }
 
-.wizard-option.selected {
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+.wizard-option-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  line-height: 1;
 }
 
 .wizard-option svg {
@@ -825,6 +913,23 @@ h1, h2, h3, h4, h5, h6 {
   height: 32px;
   color: var(--primary);
   margin-bottom: 0.5rem;
+  transition: transform 0.25s ease;
+}
+
+.wizard-option:hover {
+  border-color: var(--primary);
+  background: rgba(0, 210, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.wizard-option.selected {
+  border-color: var(--primary);
+  background: rgba(0, 210, 255, 0.12);
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
+}
+
+.wizard-option.selected svg {
+  transform: scale(1.1);
 }
 
 /* QUOTATION GENERATOR MODULE */

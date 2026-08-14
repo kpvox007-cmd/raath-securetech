@@ -221,7 +221,7 @@
     </section>
 
     <!-- CCTV Requirement Calculator Wizard -->
-    <section style="padding: 3rem 0 4rem; background: rgba(255,255,255,0.015);">
+    <section style="padding: 3rem 0 4rem; background: rgba(255,255,255,0.015);" id="cctv-calculator-section">
       <div class="container">
         <div class="section-header">
           <span class="badge badge-warning" style="margin-bottom: 0.75rem;">Interactive Tool</span>
@@ -230,43 +230,142 @@
         </div>
 
         <div class="glass-card wizard-card">
+          <!-- Step Indicator Header -->
           <div class="wizard-steps">
-            <div class="wizard-step-item active" id="wiz-step-1">
+            <div class="wizard-step-item active" id="wiz-step-1" data-step-target="1">
               <div class="step-num">1</div>
-              <span style="font-size: 0.8rem; color: var(--text-secondary);">Property Type</span>
+              <span class="step-label">Property Type</span>
             </div>
-            <div class="wizard-step-item" id="wiz-step-2">
+            <div class="wizard-step-item" id="wiz-step-2" data-step-target="2">
               <div class="step-num">2</div>
-              <span style="font-size: 0.8rem; color: var(--text-secondary);">Area Size</span>
+              <span class="step-label">Area Size</span>
             </div>
-            <div class="wizard-step-item" id="wiz-step-3">
+            <div class="wizard-step-item" id="wiz-step-3" data-step-target="3">
               <div class="step-num">3</div>
-              <span style="font-size: 0.8rem; color: var(--text-secondary);">Night Vision</span>
+              <span class="step-label">Night Vision</span>
             </div>
           </div>
 
-          <div style="margin-bottom: 1.5rem;">
-            <h4 style="color: #fff; margin-bottom: 1rem;">Select your property type:</h4>
-            <div class="wizard-option-grid">
-              <div class="wizard-option selected" data-wizard-group="propertyType" data-wizard-val="Home">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                <strong style="display: block; color: #fff;">Residence / Villa</strong>
-                <span style="font-size: 0.75rem; color: var(--text-muted);">Home & Porch</span>
+          <!-- Wizard Step Content Panels -->
+          <div class="wizard-panels">
+            <!-- Step 1: Property Type -->
+            <div class="wizard-panel active" id="wizard-panel-1">
+              <h4 style="color: #fff; margin-bottom: 0.5rem;">Step 1: Select Your Property Type</h4>
+              <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Choose the location type to determine baseline camera placement & coverage needs.</p>
+
+              <div class="wizard-option-grid">
+                <div class="wizard-option selected" data-wizard-group="propertyType" data-wizard-val="Home">
+                  <div class="wizard-option-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                  </div>
+                  <strong style="display: block; color: #fff;">Residence / Villa</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">Home, Gate & Porch</span>
+                </div>
+
+                <div class="wizard-option" data-wizard-group="propertyType" data-wizard-val="Shop">
+                  <div class="wizard-option-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path></svg>
+                  </div>
+                  <strong style="display: block; color: #fff;">Retail Shop / Store</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">Billing & Cash Counter</span>
+                </div>
+
+                <div class="wizard-option" data-wizard-group="propertyType" data-wizard-val="Factory">
+                  <div class="wizard-option-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"></path><path d="M6 20V10l4 3V10l4 3V4l6 4v12"></path></svg>
+                  </div>
+                  <strong style="display: block; color: #fff;">Factory / RIICO Unit</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">Perimeter & Heavy Security</span>
+                </div>
+
+                <div class="wizard-option" data-wizard-group="propertyType" data-wizard-val="Office">
+                  <div class="wizard-option-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line></svg>
+                  </div>
+                  <strong style="display: block; color: #fff;">Office / Commercial</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">Reception & Workstations</span>
+                </div>
               </div>
-              <div class="wizard-option" data-wizard-group="propertyType" data-wizard-val="Shop">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path></svg>
-                <strong style="display: block; color: #fff;">Retail Shop / Showroom</strong>
-                <span style="font-size: 0.75rem; color: var(--text-muted);">Counter & Billing</span>
+            </div>
+
+            <!-- Step 2: Area Size -->
+            <div class="wizard-panel" id="wizard-panel-2">
+              <h4 style="color: #fff; margin-bottom: 0.5rem;">Step 2: Select Property Area Size</h4>
+              <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Specify total covered area or outdoor perimeter to estimate camera count & cabling.</p>
+
+              <div class="wizard-option-grid">
+                <div class="wizard-option" data-wizard-group="areaSize" data-wizard-val="Small">
+                  <div class="wizard-option-badge">2-4 Cams</div>
+                  <strong style="display: block; color: #fff;">Small Area</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">&lt; 1,000 sq. ft (Single Floor / 2-3 Rooms)</span>
+                </div>
+
+                <div class="wizard-option selected" data-wizard-group="areaSize" data-wizard-val="Medium">
+                  <div class="wizard-option-badge">4-8 Cams</div>
+                  <strong style="display: block; color: #fff;">Medium Area</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">1,000 - 2,500 sq. ft (Double Story / Store)</span>
+                </div>
+
+                <div class="wizard-option" data-wizard-group="areaSize" data-wizard-val="Large">
+                  <div class="wizard-option-badge">8-12 Cams</div>
+                  <strong style="display: block; color: #fff;">Large Premises</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">2,500 - 5,000 sq. ft (Duplex Villa / Small Mill)</span>
+                </div>
+
+                <div class="wizard-option" data-wizard-group="areaSize" data-wizard-val="ExtraLarge">
+                  <div class="wizard-option-badge">12-16+ Cams</div>
+                  <strong style="display: block; color: #fff;">Extra Large Campus</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">&gt; 5,000 sq. ft (Warehouse / Industrial Plant)</span>
+                </div>
               </div>
-              <div class="wizard-option" data-wizard-group="propertyType" data-wizard-val="Factory">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"></path><path d="M6 20V10l4 3V10l4 3V4l6 4v12"></path></svg>
-                <strong style="display: block; color: #fff;">Industrial Factory / RIICO</strong>
-                <span style="font-size: 0.75rem; color: var(--text-muted);">Heavy Security</span>
+            </div>
+
+            <!-- Step 3: Night Vision -->
+            <div class="wizard-panel" id="wizard-panel-3">
+              <h4 style="color: #fff; margin-bottom: 0.5rem;">Step 3: Select Night Vision Technology</h4>
+              <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Choose night vision clarity and camera feature requirements.</p>
+
+              <div class="wizard-option-grid">
+                <div class="wizard-option" data-wizard-group="nightVision" data-wizard-val="IR">
+                  <div class="wizard-option-icon">🌙</div>
+                  <strong style="display: block; color: #fff;">Standard IR NightVision</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">Infrared B/W in total dark (20m distance)</span>
+                </div>
+
+                <div class="wizard-option selected" data-wizard-group="nightVision" data-wizard-val="FullColor">
+                  <div class="wizard-option-icon">💡</div>
+                  <strong style="display: block; color: #fff;">24/7 ColorVu Full Color</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">Vivid true color video even at pitch black night</span>
+                </div>
+
+                <div class="wizard-option" data-wizard-group="nightVision" data-wizard-val="SmartAI">
+                  <div class="wizard-option-icon">🧠</div>
+                  <strong style="display: block; color: #fff;">4K Smart AI Dual-Light</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">Ultra HD 8MP + AI Motion human/vehicle alert</span>
+                </div>
+
+                <div class="wizard-option" data-wizard-group="nightVision" data-wizard-val="SolarPTZ">
+                  <div class="wizard-option-icon">☀️</div>
+                  <strong style="display: block; color: #fff;">4G Solar Wireless PTZ</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-muted);">No electric wire needed, 360° pan/tilt 4G SIM</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div id="wizard-result-box">
+          <!-- Wizard Nav Controls -->
+          <div class="wizard-nav-buttons" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
+            <button class="btn btn-secondary btn-sm" id="btn-wiz-prev" style="visibility: hidden;">
+              ← Previous Step
+            </button>
+            <span style="font-size: 0.85rem; color: var(--text-muted);" id="wiz-step-counter">Step 1 of 3</span>
+            <button class="btn btn-primary btn-sm" id="btn-wiz-next">
+              Next Step →
+            </button>
+          </div>
+
+          <!-- Dynamic Result Box -->
+          <div id="wizard-result-box" style="margin-top: 2rem;">
             <!-- Dynamic Result rendered via app.js -->
           </div>
         </div>
